@@ -5,7 +5,7 @@ import Footer from "../components/Footer/Footer";
 
 const UserLayout = () => {
   return (
-    <div className="flex flex-col items-center w-full h-full overflow-hidden">
+    <div className="flex flex-col items-center max-w-full h-full overflow-hidden">
       <Navbar />
       <div className="">
         <Outlet />

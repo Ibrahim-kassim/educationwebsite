@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "./Navbar.css"
+import { Link } from "react-router-dom";
+import "./Navbar.css";
 import { IoSearchOutline } from "react-icons/io5";
 import { CiStickyNote } from "react-icons/ci";
 import { FaNewspaper } from "react-icons/fa";
@@ -15,8 +16,9 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const NavItem = ({ icon, text }) => (
-    <div
+  const NavItem = ({ icon, text, link }) => (
+    <Link
+      to={link}
       className={`flex items-center gap-2 text-xl w-full py-4 text-center justify-center cursor-pointer transition-colors duration-200 ${
         activeItem === text
           ? "lg:w-full lg:h-full bg-white text-black custom rounded-xl"
@@ -29,19 +31,19 @@ const Navbar = () => {
     >
       {icon}
       <small>{text}</small>
-    </div>
+    </Link>
   );
 
   const navItems = [
-    { icon: <CiStickyNote />, text: "Notes" },
-    { icon: <FaNewspaper />, text: "News" },
-    { icon: <CgMediaLive />, text: "Live" },
-    { icon: <CiHome />, text: "Main" },
+    { icon: <CiStickyNote />, text: "Notes", link: "/notes" },
+    { icon: <FaNewspaper />, text: "News", link: "/news" },
+    { icon: <CgMediaLive />, text: "Live", link: "/live" },
+    { icon: <CiHome />, text: "Main", link: "/" },
   ];
 
   return (
     <nav className="relative w-full ">
-      <div className="w-full flex items-center bg-blue-600 py-6 text-white px-4">
+      <div className="w-full flex items-center bg-blue-600 py-4 text-white px-4">
         <div className="flex items-center gap-4 w-full lg:w-1/3">
           <h1 className="font-semibold text-3xl">IbrahimEdu</h1>
           <div className="hidden lg:flex w-full items-center border-2 border-white bg-white p-2 rounded-md">
@@ -55,7 +57,7 @@ const Navbar = () => {
         </div>
         <div className="hidden lg:flex justify-between items-center px-16 w-2/3 gap-4">
           {navItems.map((item) => (
-            <NavItem key={item.text} icon={item.icon} text={item.text} />
+            <NavItem key={item.text} icon={item.icon} text={item.text} link={item.link} />
           ))}
         </div>
         <button className="lg:hidden text-2xl" onClick={toggleMenu}>
@@ -82,7 +84,7 @@ const Navbar = () => {
             />
           </div>
           {navItems.map((item) => (
-            <NavItem key={item.text} icon={item.icon} text={item.text} />
+            <NavItem key={item.text} icon={item.icon} text={item.text} link={item.link} />
           ))}
         </div>
       </div>
